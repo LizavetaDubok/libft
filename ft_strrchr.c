@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldubok <ldubok@student.42warsaw.pl>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/19 11:59:42 by ldubok            #+#    #+#             */
-/*   Updated: 2026/06/20 23:09:15 by ldubok           ###   ########.fr       */
+/*   Created: 2026/06/20 22:56:11 by ldubok            #+#    #+#             */
+/*   Updated: 2026/06/20 23:09:36 by ldubok           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void*  memcpy(void *b, int c, size_t len)
+char	*ft_strrchr(const char *s, int c)
 {
-    unsigned char*  pointer;
-    unsigned char   character;
-    int             i;
+	char	*ptr;
+	char	character;
 
-    pointer = (unsigned char*) b;
-    character = (unsigned char) c;
-    i = 0;
-    while (i < len)
-    {
-        *pointer = character;
-        ++pointer;
-        ++i;
-    }
-    return (b);
+	ptr = s;
+	character = c;
+	while (*ptr)
+		ptr++;
+	if (!character)
+	{
+		return (ptr);
+	}
+	while (ptr >= s)
+	{
+		if (*ptr == character)
+			return (ptr);
+		ptr--;
+	}
+	return (NULL);	
 }
